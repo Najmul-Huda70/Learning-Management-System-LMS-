@@ -1,0 +1,162 @@
+[
+  {
+    "year": "1st Year",
+    "semester": "1st Semester",
+    "courseId": "CSE-1101",
+    "title": "Introduction to Programming",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": null,
+    "teacher": "Dr. Rahman"
+  },
+  {
+    "year": "1st Year",
+    "semester": "1st Semester",
+    "courseId": "CSE-1102",
+    "title": "Programming Lab",
+    "credits": 1.5,
+    "type": "Lab",
+    "prerequisites": null,
+    "teacher": "Md. Hasan"
+  },
+  {
+    "year": "1st Year",
+    "semester": "1st Semester",
+    "courseId": "MATH-1101",
+    "title": "Calculus I",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": null,
+    "teacher": "Dr. Karim"
+  },
+  {
+    "year": "1st Year",
+    "semester": "1st Semester",
+    "courseId": "PHY-1101",
+    "title": "Physics I",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": null,
+    "teacher": "Prof. Alam"
+  },
+  {
+    "year": "1st Year",
+    "semester": "2nd Semester",
+    "courseId": "CSE-1201",
+    "title": "Data Structures",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": "CSE-1101",
+    "teacher": "Dr. Ahmed"
+  },
+  {
+    "year": "1st Year",
+    "semester": "2nd Semester",
+    "courseId": "CSE-1202",
+    "title": "Data Structures Lab",
+    "credits": 1.5,
+    "type": "Lab",
+    "prerequisites": "CSE-1102",
+    "teacher": "Ms. Sultana"
+  },
+  {
+    "year": "1st Year",
+    "semester": "2nd Semester",
+    "courseId": "MATH-1201",
+    "title": "Linear Algebra",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": "MATH-1101",
+    "teacher": "Dr. Hossain"
+  },
+  {
+    "year": "1st Year",
+    "semester": "2nd Semester",
+    "courseId": "ENG-1201",
+    "title": "Technical English",
+    "credits": 2.0,
+    "type": "Theory",
+    "prerequisites": null,
+    "teacher": "Ms. Farzana"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "1st Semester",
+    "courseId": "CSE-2101",
+    "title": "Algorithms",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": "CSE-1201",
+    "teacher": "Dr. Kabir"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "1st Semester",
+    "courseId": "CSE-2102",
+    "title": "Algorithms Lab",
+    "credits": 1.5,
+    "type": "Lab",
+    "prerequisites": "CSE-1202",
+    "teacher": "Mr. Imran"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "1st Semester",
+    "courseId": "CSE-2103",
+    "title": "Digital Logic Design",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": null,
+    "teacher": "Dr. Nayeem"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "1st Semester",
+    "courseId": "STAT-2101",
+    "title": "Probability and Statistics",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": "MATH-1201",
+    "teacher": "Dr. Shafiq"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "2nd Semester",
+    "courseId": "CSE-2201",
+    "title": "Operating Systems",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": "CSE-2101",
+    "teacher": "Dr. Rashid"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "2nd Semester",
+    "courseId": "CSE-2202",
+    "title": "Operating Systems Lab",
+    "credits": 1.5,
+    "type": "Lab",
+    "prerequisites": "CSE-2102",
+    "teacher": "Ms. Tania"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "2nd Semester",
+    "courseId": "CSE-2203",
+    "title": "Database Systems",
+    "credits": 3.0,
+    "type": "Theory",
+    "prerequisites": "CSE-1201",
+    "teacher": "Dr. Mahmud"
+  },
+  {
+    "year": "2nd Year",
+    "semester": "2nd Semester",
+    "courseId": "CSE-2204",
+    "title": "Database Lab",
+    "credits": 1.5,
+    "type": "Lab",
+    "prerequisites": "CSE-1202",
+    "teacher": "Mr. Rafi"
+  }
+]
