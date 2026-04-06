@@ -2,7 +2,7 @@
 @plugin "daisyui";
 /* bell Ring */
 .bell {
-  border: 2.17px solid black;
+  border: 2.17px solid gray;
   border-radius: 10px 10px 0 0;
   width: 15px;
   height: 17px;
@@ -61,7 +61,7 @@
 }
 /*container background hover effect*/
 .notification:hover {
-  background: rgba(170, 170, 170, 0.062);
+  background: rgba(170, 170, 170, 0.068);
 }
 /*container animations*/
 .notification:hover > .bell-container {

@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "Class Suspension Notice",
+    "short_description": "All classes will remain suspended tomorrow.",
+    "description": "Due to scheduled maintenance work in the main building, all classes will remain suspended tomorrow. Students are advised to check the portal for updated schedules.",
+    "type": "urgent",
+    "date": "05 APR 2026",
+    "posted_by": "admin"
+  },
+  {
+    "id": 2,
+    "title": "Assignment Submission Deadline",
+    "short_description": "Submit your React assignment before 10th April.",
+    "description": "Students must submit their React.js assignment through the LMS before 10th April 2026. Late submissions will not be accepted without prior approval.",
+    "type": "academic",
+    "date": "03 APR 2026",
+    "posted_by": "teacher"
+  },
+  {
+    "id": 3,
+    "title": "New Classroom Added",
+    "short_description": "A new classroom has been added for batch 2025.",
+    "description": "A new smart classroom has been allocated for Batch 2025 on the 3rd floor. It is equipped with projectors and high-speed internet for better learning experience.",
+    "type": "info",
+    "date": "02 APR 2026",
+    "posted_by": "teacher"
+  },
+  {
+    "id": 4,
+    "title": "Exam Routine Published",
+    "short_description": "Midterm exam routine is now available.",
+    "description": "The midterm examination routine has been published on the student portal. Students are advised to download the routine and prepare accordingly.",
+    "type": "exam",
+    "date": "01 APR 2026",
+    "posted_by": "admin"
+  },
+  {
+    "id": 5,
+    "title": "Holiday Notice",
+    "short_description": "Institute will remain closed on Friday.",
+    "description": "The institute will remain closed on Friday due to a national holiday. Regular activities will resume from the next working day.",
+    "type": "holiday",
+    "date": "31 MAR 2026",
+    "posted_by": "admin"
+  }
+]

@@ -54,9 +54,9 @@ export default function Navbar() {
             <Link href={"/notice"}>Notice</Link>
           </ul>
         </nav>
-        <div className=" flex justify-end items-center gap-2 ">
+        <div className=" flex justify-end items-center gap-4">
           {/* Bell Ring*/}
-          <div className=" w-10 h-10  hover:bg-gray-200 flex justify-center items-center rounded-lg">
+          <div className=" w-10 h-10  flex justify-center items-center rounded-lg">
             <div className="notification">
               <div className="bell-container">
                 <div className="bell"></div>

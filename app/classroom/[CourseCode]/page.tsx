@@ -1,78 +1,23 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import notices from "../../data/notice.json";
-import Link from "next/link";
-export default function Notice() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [open, setOpen] = useState(false);
-  const [Value, setValue] = useState("");
-  const [filters, setFilters] = useState({
-    type: "All",
-    posted_by: "All",
-  });
-
-  const HandleFilterChange = (key: string, value: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
-  // console.log(open);
-  const handleFilterBtn = () => {
-    setOpen(!open);
-    HandleFilterChange("type", "All");
-    HandleFilterChange("posted_by", "All");
-  };
-
-  const search = Value.toLowerCase();
-  const filteredCourse = useMemo(() => {
-    return notices.filter((n) => {
-      const matchesSearch =
-        !search ||
-        [
-          n.title,
-          n.short_description,
-          n.description,
-          n.type,
-          n.posted_by,
-          n.date,
-        ]
-          .join(" ")
-          .toLowerCase()
-          .includes(search);
-      const matchesFilter =
-        (filters.type === "All" || n.type.startsWith(filters.type)) &&
-        (filters.posted_by === "All" ||
-          n.posted_by.includes(filters.posted_by));
-      return matchesSearch && matchesFilter;
-    });
-  }, [search, filters]);
-  // console.log(Value);
-
-  const itemsPerPage: number = 12;
-  const courseLength: number = filteredCourse.length;
-  const totalPages: number = Math.ceil(courseLength / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentNotice = filteredCourse.slice(
-    startIndex,
-    startIndex + itemsPerPage,
+import React, { use } from "react";
+import courses from "../../../data/courses.json";
+export default function CourseDetails({
+  params,
+}: {
+  params: Promise<{ CourseCode: string }>;
+}) {
+  const { CourseCode } = use(params);
+  const course = courses.find(
+    (item) => item.courseId.toLowerCase() === CourseCode.toLowerCase(),
   );
   return (
-    <div className="m-5 p-4  rounded-lg shadow-sm">
-      <h1 className="text-5xl text-center  text-blue-400 font-semibold">
-        Notice Board
-      </h1>
-      <p className="text-lg text-center mt-2 text-gray-500">
-        Manage and access your important notice.
-      </p>
+    <>
       <div className="flex justify-between items-center my-5 gap-4">
         <div className="w-full flex items-center h-11 text-lg bg-[#0f172a] text-[#d1d5db] rounded-lg shadow-md overflow-hidden px-2">
           <input
             type="text"
             name="search"
             autoComplete="off"
-            defaultValue={Value}
-            onChange={(e) => setValue(e.target.value)}
             id="input"
             placeholder="Search course id , title..."
             className="w-full h-full outline-none text-lg px-2  caret-blue-500"
@@ -91,7 +36,6 @@ export default function Notice() {
         </div>
         <div>
           <button
-            onClick={handleFilterBtn}
             className="
       px-6 py-1 rounded-lg min-h-[2.4em] min-w-[3em]
       flex items-center gap-2
@@ -110,111 +54,133 @@ export default function Notice() {
         </div>
       </div>
       <div
-        className={`${open ? "flex" : "hidden"} flex-col gap-6 my-8 items-center transition-all duration-300`}
+        className={`flex-col gap-6 my-5 items-center transition-all duration-300`}
       >
-        {/* Category Filter Pills */}
-        <div className="flex flex-col items-center gap-3">
+        {/* Year Filter Pills */}
+        {/* <div className="flex flex-col items-center gap-3">
           <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-            Category
+            Year
           </span>
           <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800 shadow-lg">
-            {[
-              "All",
-              "urgent",
-              "academic",
-              "info",
-              "exam",
-              "holiday",
-              "others",
-            ].map((type) => (
+            {["All", "1st", "2nd", "3rd", "4th"].map((year) => (
               <button
-                key={type}
-                onClick={() => HandleFilterChange("type", type)}
+                key={year}
+                onClick={() => HandleFilterChange("year", year)}
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 
             ${
-              type === filters.type
+              year === filters.year
                 ? "bg-[#0A66C2] text-white shadow-[0_0_15px_rgba(10,102,194,0.4)]"
                 : "text-gray-400 hover:text-white hover:bg-gray-800"
             }`}
               >
-                {type}
+                {year === "All" ? "All Years" : `${year} Year`}
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         <div className="flex gap-12">
-          {/* Posted Pills */}
-          <div className="flex flex-col items-center gap-3">
+          {/* Semester Pills */}
+          {/* <div className="flex flex-col items-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-              Posted By
+              Semester
             </span>
             <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800">
-              {["All", "admin", "teacher"].map((posted_by) => (
+              {["All", "1st", "2nd"].map((sem) => (
                 <button
-                  key={posted_by}
-                  onClick={() => HandleFilterChange("posted_by", posted_by)}
+                  key={sem}
+                  onClick={() => HandleFilterChange("semester", sem)}
                   className={`px-5 py-2 rounded-full text-sm font-medium text-gray-400 hover:text-white transition-all ${
-                    posted_by === filters.posted_by
+                    sem === filters.semester
                       ? "bg-[#0A66C2] text-white shadow-[0_0_15px_rgba(10,102,194,0.4)]"
                       : "text-gray-400 hover:text-white hover:bg-gray-800"
                   }`}
                 >
-                  {posted_by}
+                  {sem === "All" ? "All" : `${sem} Sem`}
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
+
+          {/* Course Type Pills */}
+          {/* <div className="flex flex-col items-center gap-3">
+            <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+              Type
+            </span>
+            <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800">
+              {["All", "Theory", "Lab"].map((type) => (
+                <button
+                  key={type}
+                  onClick={() => HandleFilterChange("type", type)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium text-gray-400 hover:text-white transition-all ${
+                    type === filters.type
+                      ? "bg-[#0A66C2] text-white shadow-[0_0_15px_rgba(10,102,194,0.4)]"
+                      : "text-gray-400 hover:text-white hover:bg-gray-800"
+                  }`}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
+          </div> */}
         </div>
       </div>
-      <div className="mx-auto grid grid-cols-4 justify-center gap-5">
-        {currentNotice.length ? (
-          currentNotice.map((notice, index) => {
+      {/* <div className="mx-auto grid grid-cols-4 justify-center gap-5">
+        {currentCourse.length ? (
+          currentCourse.map((course, index) => {
             return (
               <div
                 key={index}
-                className="group space-y-3 relative w-75 p-4 pb-22 rounded-xl bg-[#0f172a] text-white overflow-hidden 
+                className="group relative w-75 p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
       shadow-[inset_0_-16px_24px_rgba(255,255,255,0.15)]"
               >
-                {/* Title */}
+                
+                <Link href={`/classroom/${course.courseId.toLowerCase()}`}>
+                  <h2 className="text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
+                    {course.courseId} : {course.title}
+                  </h2>
+                </Link>
 
-                <h2 className="text-lg font-bold text-center text-cyan-400">
-                  {notice.title}
-                </h2>
-
-                {/* Type */}
-                <div className="mt-3 flex flex-wrap gap-2 font-medium text-md text-gray-300">
+                
+                <div className="mt-3 flex flex-wrap gap-2 text-md font-medium text-gray-300">
                   <span>
-                    <span className="text-green-400 ">Type:</span> {notice.type}
+                    <span className="text-green-400 ">Type:</span> {course.type}
+                  </span>
+                  <span>
+                    <span className="text-yellow-400">Credits:</span>{" "}
+                    {course.credits}
+                  </span>
+                  <span>
+                    <span className="text-emerald-400">Prerequisites:</span>{" "}
+                    {course.prerequisites || "N/A"}
                   </span>
                 </div>
-                {/* description */}
-                <span className="font-medium text- text-gray-400">
-                  {notice.description}
-                </span>
 
-                {/* Posted by */}
+             
+                <div className="mt-2 text-md  text-gray-300">
+                  <span className="font-semibold text-white">
+                    Course Teacher:
+                  </span>{" "}
+                  {course.teacher}
+                </div>
+
                 <div className="absolute bottom-2">
-                  <div className="mt-2 text-md text-gray-300">
-                    <span className="font-semibold mb-2 text-white">
-                      Posted by:
-                    </span>{" "}
-                    {notice.posted_by}
-                  </div>
-                  {/* Divider */}
+                 
                   <div className="w-full h-0.5 bg-gray-700 my-1"></div>
 
-                  {/* Footer */}
-                  <div className="flex gap-24  justify-between items-center text-sm">
-                    <span className="text-gray-400">{notice.date}</span>
+                  
+                  <div className="flex gap-10  justify-between items-center text-sm">
+                    <span className="text-gray-400">
+                      {course.year} {course.semester}
+                    </span>
 
-                    {/* Icons */}
+                   
                     <div className="flex gap-0.5">
                       <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                        <i className="fa-solid fa-share-nodes"></i>
+                        <i className="fa-solid fa-user"></i>
                       </div>
                       <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                        <i className="fa-solid fa-file-lines"></i>
+                        <i className="fa-regular fa-folder"></i>
                       </div>
                       <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
                         <i className="fa-solid fa-ellipsis-vertical"></i>
@@ -227,11 +193,11 @@ export default function Notice() {
           })
         ) : (
           <div className="text-gray-400 font-semibold text-center col-span-full">
-            No Notice Available
+            No Course Available
           </div>
         )}
-      </div>
-      {currentNotice.length ? (
+      </div> */}
+      {/* {currentCourse.length ? (
         <div className="mt-5 flex justify-between items-center">
           <div className="text-white font-bold">
             Showing {Math.min(startIndex + 1, courseLength)} to{" "}
@@ -260,7 +226,7 @@ export default function Notice() {
         </div>
       ) : (
         ""
-      )}
-    </div>
+      )} */}
+    </>
   );
 }

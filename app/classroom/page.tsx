@@ -5,6 +5,7 @@ import Link from "next/link";
 export default function Classroom() {
   const [currentPage, setCurrentPage] = useState(1);
   const [open, setOpen] = useState(false);
+  const [Value, setValue] = useState("");
   const [filters, setFilters] = useState({
     year: "All",
     semester: "All",
@@ -24,7 +25,7 @@ export default function Classroom() {
     HandleFilterChange("semester", "All");
     HandleFilterChange("type", "All");
   };
-  const [Value, setValue] = useState("");
+
   const search = Value.toLowerCase();
   const filteredCourse = useMemo(() => {
     return courses.filter((c) => {
@@ -66,6 +67,7 @@ export default function Classroom() {
             type="text"
             name="search"
             defaultValue={Value}
+            autoComplete="off"
             onChange={(e) => setValue(e.target.value)}
             id="input"
             placeholder="Search course id , title..."
@@ -176,100 +178,107 @@ export default function Classroom() {
         </div>
       </div>
       <div className="mx-auto grid grid-cols-4 justify-center gap-5">
-        {currentCourse.map((course, index) => {
-          return (
-            <div
-              key={index}
-              className="group relative w-75 p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
+        {currentCourse.length ? (
+          currentCourse.map((course, index) => {
+            return (
+              <div
+                key={index}
+                className="group relative w-75 p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
       shadow-[inset_0_-16px_24px_rgba(255,255,255,0.15)]"
-            >
-              {/* Title */}
-              <Link href={`/classroom/${course.courseId.toLowerCase()}`}>
-                <h2 className="text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
-                  {course.courseId} : {course.title}
-                </h2>
-              </Link>
+              >
+                {/* Title */}
+                <Link href={`/classroom/${course.courseId.toLowerCase()}`}>
+                  <h2 className="text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
+                    {course.courseId} : {course.title}
+                  </h2>
+                </Link>
 
-              {/* Info */}
-              <div className="mt-3 flex flex-wrap gap-2 text-sm text-gray-300">
-                <span>
-                  <span className="text-green-400 font-medium">Type:</span>{" "}
-                  {course.type}
-                </span>
-                <span>
-                  <span className="text-yellow-400 font-medium">Credits:</span>{" "}
-                  {course.credits}
-                </span>
-                <span>
-                  <span className="text-emerald-400 font-medium">
-                    Prerequisites:
-                  </span>{" "}
-                  {course.prerequisites || "N/A"}
-                </span>
-              </div>
-
-              {/* Teacher */}
-              <div className="mt-2 text-sm text-gray-300">
-                <span className="font-semibold text-white">
-                  Course Teacher:
-                </span>{" "}
-                {course.teacher}
-              </div>
-
-              <div className="absolute bottom-2">
-                {/* Divider */}
-                <div className="w-full h-0.5 bg-gray-700 my-1"></div>
-
-                {/* Footer */}
-                <div className="flex gap-10  justify-between items-center text-sm">
-                  <span className="text-gray-400">
-                    {course.year} {course.semester}
+                {/* Info */}
+                <div className="mt-3 flex flex-wrap gap-2 text-md font-medium text-gray-300">
+                  <span>
+                    <span className="text-green-400 ">Type:</span> {course.type}
                   </span>
+                  <span>
+                    <span className="text-yellow-400">Credits:</span>{" "}
+                    {course.credits}
+                  </span>
+                  <span>
+                    <span className="text-emerald-400">Prerequisites:</span>{" "}
+                    {course.prerequisites || "N/A"}
+                  </span>
+                </div>
 
-                  {/* Icons */}
-                  <div className="flex gap-0.5">
-                    <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                      <i className="fa-solid fa-user"></i>
-                    </div>
-                    <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                      <i className="fa-regular fa-folder"></i>
-                    </div>
-                    <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                      <i className="fa-solid fa-ellipsis-vertical"></i>
+                {/* Teacher */}
+                <div className="mt-2 text-md  text-gray-300">
+                  <span className="font-semibold text-white">
+                    Course Teacher:
+                  </span>{" "}
+                  {course.teacher}
+                </div>
+
+                <div className="absolute bottom-2">
+                  {/* Divider */}
+                  <div className="w-full h-0.5 bg-gray-700 my-1"></div>
+
+                  {/* Footer */}
+                  <div className="flex gap-10  justify-between items-center text-sm">
+                    <span className="text-gray-400">
+                      {course.year} {course.semester}
+                    </span>
+
+                    {/* Icons */}
+                    <div className="flex gap-0.5">
+                      <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
+                        <i className="fa-solid fa-user"></i>
+                      </div>
+                      <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
+                        <i className="fa-regular fa-folder"></i>
+                      </div>
+                      <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
+                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="mt-5 flex justify-between items-center">
-        <div className="text-white font-bold">
-          Showing {startIndex + 1} to{" "}
-          {Math.min(startIndex + itemsPerPage, courseLength)} of {courseLength}{" "}
-          results
-        </div>
-        <div className="flex items-center gap-2 text-gray-800">
-          <button
-            className="hover:bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center"
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage <= 1}
-          >
-            <i className="fa-solid fa-angle-left"></i>
-          </button>
-          <div className="btn btn-active btn-sm bg-[#0f172a] text-white text-lg font-bold p-2 px-3">
-            {currentPage}
+            );
+          })
+        ) : (
+          <div className="text-gray-400 font-semibold text-center col-span-full">
+            No Course Available
           </div>
-          <button
-            className="hover:bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center"
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={currentPage >= totalPages}
-          >
-            <i className="fa-solid fa-angle-right"></i>
-          </button>
-        </div>
+        )}
       </div>
+      {currentCourse.length ? (
+        <div className="mt-5 flex justify-between items-center">
+          <div className="text-white font-bold">
+            Showing {Math.min(startIndex + 1, courseLength)} to{" "}
+            {Math.min(startIndex + itemsPerPage, courseLength)} of{" "}
+            {courseLength} results
+          </div>
+          <div className="flex items-center gap-2 text-gray-800">
+            <button
+              className="hover:bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center"
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage <= 1}
+            >
+              <i className="fa-solid fa-angle-left"></i>
+            </button>
+            <div className="btn btn-active btn-sm bg-[#0f172a] text-white text-lg font-bold p-2 px-3">
+              {Math.min(currentPage, courseLength)}
+            </div>
+            <button
+              className="hover:bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center"
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage >= totalPages}
+            >
+              <i className="fa-solid fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
