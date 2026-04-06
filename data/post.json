@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "postedBy": "Rahim Ahmed",
+    "position": "student",
+    "roleColor": "blue",
+    "timestamp": "2026-04-04T10:30:00",
+    "postTime": "10:30 AM",
+    "postData": "04 April, 2026",
+    "category": "Note",
+    "description": "আজকের ক্যালকুলাস ১ ক্লাসের হ্যান্ড-রিটেন নোটটি এখানে শেয়ার করলাম। লিমিট (Limit) সেকশনটা সবাই ভালো করে দেখে নিও।",
+    "attachments": {
+      "hasImage": true,
+      "imageUrl": "/najmul huda.png",
+      "hasFile": true,
+      "fileUrl": "https://drive.google.com/file/d/1Q4I_WGPxECqUanmO-gQY-abzaARTGsau/view?usp=drive_link",
+      "fileName": "Calculus_Limit_Notes.pdf",
+      "fileSize": "2.5 MB"
+    },
+    "stats": {
+      "likes": 12,
+      "comments": 4
+    }
+  },
+  {
+    "id": 2,
+    "postedBy": "Dr. Karim",
+    "position": "teacher",
+    "roleColor": "orange",
+    "timestamp": "2026-04-03T14:15:00",
+    "postTime": "02:15 PM",
+    "postData": "03 April, 2026",
+    "category": "Assignment",
+    "description": "সবাই মনোযোগ দিয়ে শোনো, Assignment 2 পোর্টাল ওপেন করা হয়েছে। আগামী সপ্তাহের শুক্রবারের মধ্যে সাবমিট করতে হবে। দেরি হলে মার্কস কাটা যাবে।",
+    "attachments": {
+      "hasImage": false,
+      "imageUrl": "",
+      "hasFile": true,
+      "fileUrl": "https://drive.google.com/file/d/1DT1v3IetzuIMNrcSTsn1dMkSz_21jRna/view?usp=drive_link",
+      "fileName": "Assignment_02_Brief.docx",
+      "fileSize": "1.2 MB"
+    },
+    "stats": {
+      "likes": 45,
+      "comments": 10
+    }
+  },
+  {
+    "id": 3,
+    "postedBy": "Tanvir Hasan",
+    "position": "student",
+    "roleColor": "blue",
+    "timestamp": "2026-04-02T20:45:00",
+    "postTime": "08:45 PM",
+    "postData": "02 April, 2026",
+    "category": "Classwork",
+    "description": "গ্রুপ প্রেজেন্টেশনের জন্য স্লাইডগুলো আপলোড করলাম। আমাদের টিমের বাকিরা একটু চেক করে নিস।",
+    "attachments": {
+      "hasImage": true,
+      "imageUrl": "/najmul huda.png",
+      "hasFile": true,
+      "fileUrl": "https://example.com/docs/presentation.pptx",
+      "fileName": "Group_Presentation_Final.pptx",
+      "fileSize": "5.8 MB"
+    },
+    "stats": {
+      "likes": 8,
+      "comments": 2
+    }
+  }
+]

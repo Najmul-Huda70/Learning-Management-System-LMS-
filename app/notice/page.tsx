@@ -89,7 +89,7 @@ export default function Notice() {
             </svg>
           </button>
         </div>
-        <div>
+        <div className="w-30">
           <button
             onClick={handleFilterBtn}
             className="

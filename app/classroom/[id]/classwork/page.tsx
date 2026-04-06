@@ -1,23 +1,74 @@
 "use client";
-import React, { use } from "react";
-import courses from "../../../data/courses.json";
-export default function CourseDetails({
-  params,
-}: {
-  params: Promise<{ CourseCode: string }>;
-}) {
-  const { CourseCode } = use(params);
-  const course = courses.find(
-    (item) => item.courseId.toLowerCase() === CourseCode.toLowerCase(),
-  );
+import React, { useMemo, useState } from "react";
+// import courses from "../../data/courses.json";
+import Link from "next/link";
+export default function Classwork() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [open, setOpen] = useState(false);
+  const [Value, setValue] = useState("");
+  const [filters, setFilters] = useState({
+    year: "All",
+    semester: "All",
+    type: "All",
+  });
+
+  const HandleFilterChange = (key: string, value: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+  // console.log(open);
+  const handleFilterBtn = () => {
+    setOpen(!open);
+    HandleFilterChange("year", "All");
+    HandleFilterChange("semester", "All");
+    HandleFilterChange("type", "All");
+  };
+
+  // const search = Value.toLowerCase();
+  // const filteredCourse = useMemo(() => {
+  //   return courses.filter((c) => {
+  //     const matchesSearch =
+  //       !search ||
+  //       [c.courseId, c.title, c.type, c.teacher, c.semester, c.year, c.credits]
+  //         .join(" ")
+  //         .toLowerCase()
+  //         .includes(search);
+  //     const matchesFilter =
+  //       (filters.year === "All" || c.year.startsWith(filters.year)) &&
+  //       (filters.semester === "All" ||
+  //         c.semester.startsWith(filters.semester)) &&
+  //       (filters.type === "All" || c.type.includes(filters.type));
+  //     return matchesSearch && matchesFilter;
+  //   });
+  // }, [search, filters]);
+  // console.log(Value);
+
+  // const itemsPerPage: number = 12;
+  // const courseLength: number = filteredCourse.length;
+  // const totalPages: number = Math.ceil(courseLength / itemsPerPage);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const currentCourse = filteredCourse.slice(
+  //   startIndex,
+  //   startIndex + itemsPerPage,
+  // );
   return (
-    <>
+    <div className="m-5 p-4  rounded-lg shadow-sm">
+      <h1 className="text-5xl text-center  text-blue-400 font-semibold">
+        My Classwork
+      </h1>
+      <p className="text-lg text-center mt-2 text-gray-500">
+        Manage and access your Classwork
+      </p>
       <div className="flex justify-between items-center my-5 gap-4">
         <div className="w-full flex items-center h-11 text-lg bg-[#0f172a] text-[#d1d5db] rounded-lg shadow-md overflow-hidden px-2">
           <input
             type="text"
             name="search"
+            defaultValue={Value}
             autoComplete="off"
+            onChange={(e) => setValue(e.target.value)}
             id="input"
             placeholder="Search course id , title..."
             className="w-full h-full outline-none text-lg px-2  caret-blue-500"
@@ -34,8 +85,9 @@ export default function CourseDetails({
             </svg>
           </button>
         </div>
-        <div>
+        <div className="w-30">
           <button
+            onClick={handleFilterBtn}
             className="
       px-6 py-1 rounded-lg min-h-[2.4em] min-w-[3em]
       flex items-center gap-2
@@ -54,10 +106,10 @@ export default function CourseDetails({
         </div>
       </div>
       <div
-        className={`flex-col gap-6 my-5 items-center transition-all duration-300`}
+        className={`${open ? "flex" : "hidden"} flex-col gap-6 my-8 items-center transition-all duration-300`}
       >
         {/* Year Filter Pills */}
-        {/* <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-3">
           <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
             Year
           </span>
@@ -77,11 +129,11 @@ export default function CourseDetails({
               </button>
             ))}
           </div>
-        </div> */}
+        </div>
 
         <div className="flex gap-12">
           {/* Semester Pills */}
-          {/* <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
               Semester
             </span>
@@ -100,10 +152,10 @@ export default function CourseDetails({
                 </button>
               ))}
             </div>
-          </div> */}
+          </div>
 
           {/* Course Type Pills */}
-          {/* <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
               Type
             </span>
@@ -122,7 +174,7 @@ export default function CourseDetails({
                 </button>
               ))}
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
       {/* <div className="mx-auto grid grid-cols-4 justify-center gap-5">
@@ -156,7 +208,7 @@ export default function CourseDetails({
                   </span>
                 </div>
 
-             
+                
                 <div className="mt-2 text-md  text-gray-300">
                   <span className="font-semibold text-white">
                     Course Teacher:
@@ -165,7 +217,7 @@ export default function CourseDetails({
                 </div>
 
                 <div className="absolute bottom-2">
-                 
+                  
                   <div className="w-full h-0.5 bg-gray-700 my-1"></div>
 
                   
@@ -176,12 +228,20 @@ export default function CourseDetails({
 
                    
                     <div className="flex gap-0.5">
-                      <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                        <i className="fa-solid fa-user"></i>
-                      </div>
-                      <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                        <i className="fa-regular fa-folder"></i>
-                      </div>
+                      <Link
+                        href={`classroom/${course.courseId.toLowerCase()}/classwork`}
+                      >
+                        <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
+                          <i className="fa-solid fa-user"></i>
+                        </div>
+                      </Link>
+                      <Link
+                        href={`classroom/${course.courseId.toLowerCase()}/file`}
+                      >
+                        <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
+                          <i className="fa-regular fa-folder"></i>
+                        </div>
+                      </Link>
                       <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
                         <i className="fa-solid fa-ellipsis-vertical"></i>
                       </div>
@@ -227,6 +287,6 @@ export default function CourseDetails({
       ) : (
         ""
       )} */}
-    </>
+    </div>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import courses from "../../data/courses.json";
-import Link from "next/link";
-export default function Classroom() {
-  const [currentPage, setCurrentPage] = useState(1);
+import React, { useState } from "react";
+// import courses from "../../data/courses.json";
+// import Link from "next/link";
+export default function File() {
+  // const [currentPage, setCurrentPage] = useState(1);
   const [open, setOpen] = useState(false);
   const [Value, setValue] = useState("");
   const [filters, setFilters] = useState({
@@ -26,37 +26,37 @@ export default function Classroom() {
     HandleFilterChange("type", "All");
   };
 
-  const search = Value.toLowerCase();
-  const filteredCourse = useMemo(() => {
-    return courses.filter((c) => {
-      const matchesSearch =
-        !search ||
-        [c.courseId, c.title, c.type, c.teacher, c.semester, c.year, c.credits]
-          .join(" ")
-          .toLowerCase()
-          .includes(search);
-      const matchesFilter =
-        (filters.year === "All" || c.year.startsWith(filters.year)) &&
-        (filters.semester === "All" ||
-          c.semester.startsWith(filters.semester)) &&
-        (filters.type === "All" || c.type.includes(filters.type));
-      return matchesSearch && matchesFilter;
-    });
-  }, [search, filters]);
+  // const search = Value.toLowerCase();
+  // const filteredCourse = useMemo(() => {
+  //   return courses.filter((c) => {
+  //     const matchesSearch =
+  //       !search ||
+  //       [c.courseId, c.title, c.type, c.teacher, c.semester, c.year, c.credits]
+  //         .join(" ")
+  //         .toLowerCase()
+  //         .includes(search);
+  //     const matchesFilter =
+  //       (filters.year === "All" || c.year.startsWith(filters.year)) &&
+  //       (filters.semester === "All" ||
+  //         c.semester.startsWith(filters.semester)) &&
+  //       (filters.type === "All" || c.type.includes(filters.type));
+  //     return matchesSearch && matchesFilter;
+  //   });
+  // }, [search, filters]);
   // console.log(Value);
 
-  const itemsPerPage: number = 12;
-  const courseLength: number = filteredCourse.length;
-  const totalPages: number = Math.ceil(courseLength / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentCourse = filteredCourse.slice(
-    startIndex,
-    startIndex + itemsPerPage,
-  );
+  // const itemsPerPage: number = 12;
+  // const courseLength: number = filteredCourse.length;
+  // const totalPages: number = Math.ceil(courseLength / itemsPerPage);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const currentCourse = filteredCourse.slice(
+  //   startIndex,
+  //   startIndex + itemsPerPage,
+  // );
   return (
     <div className="m-5 p-4  rounded-lg shadow-sm">
       <h1 className="text-5xl text-center  text-blue-400 font-semibold">
-        My Classroom
+        File Explorer
       </h1>
       <p className="text-lg text-center mt-2 text-gray-500">
         Manage and access your enrolled classrooms
@@ -177,7 +177,7 @@ export default function Classroom() {
           </div>
         </div>
       </div>
-      <div className="mx-auto grid grid-cols-4 justify-center gap-5">
+      {/* <div className="mx-auto grid grid-cols-4 justify-center gap-5">
         {currentCourse.length ? (
           currentCourse.map((course, index) => {
             return (
@@ -186,14 +186,14 @@ export default function Classroom() {
                 className="group relative w-75 p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
       shadow-[inset_0_-16px_24px_rgba(255,255,255,0.15)]"
               >
-                {/* Title */}
+                
                 <Link href={`/classroom/${course.courseId.toLowerCase()}`}>
                   <h2 className="text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
                     {course.courseId} : {course.title}
                   </h2>
                 </Link>
 
-                {/* Info */}
+               
                 <div className="mt-3 flex flex-wrap gap-2 text-md font-medium text-gray-300">
                   <span>
                     <span className="text-green-400 ">Type:</span> {course.type}
@@ -208,7 +208,7 @@ export default function Classroom() {
                   </span>
                 </div>
 
-                {/* Teacher */}
+                
                 <div className="mt-2 text-md  text-gray-300">
                   <span className="font-semibold text-white">
                     Course Teacher:
@@ -217,16 +217,16 @@ export default function Classroom() {
                 </div>
 
                 <div className="absolute bottom-2">
-                  {/* Divider */}
+                 
                   <div className="w-full h-0.5 bg-gray-700 my-1"></div>
 
-                  {/* Footer */}
+                  
                   <div className="flex gap-10  justify-between items-center text-sm">
                     <span className="text-gray-400">
                       {course.year} {course.semester}
                     </span>
 
-                    {/* Icons */}
+                 
                     <div className="flex gap-0.5">
                       <Link
                         href={`classroom/${course.courseId.toLowerCase()}/classwork`}
@@ -256,8 +256,8 @@ export default function Classroom() {
             No Course Available
           </div>
         )}
-      </div>
-      {currentCourse.length ? (
+      </div> */}
+      {/* {currentCourse.length ? (
         <div className="mt-5 flex justify-between items-center">
           <div className="text-white font-bold">
             Showing {Math.min(startIndex + 1, courseLength)} to{" "}
@@ -286,7 +286,7 @@ export default function Classroom() {
         </div>
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }

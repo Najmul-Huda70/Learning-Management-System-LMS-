@@ -4,14 +4,14 @@ import courses from "../../../data/courses.json";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-export default function CourseHeader({
+export default function CourseNavbar({
   params,
 }: {
-  params: Promise<{ CourseCode: string }>;
+  params: Promise<{ id: string }>;
 }) {
-  const { CourseCode } = use(params);
+  const { id } = use(params);
   const course = courses.find(
-    (item) => item.courseId.toLowerCase() === CourseCode.toLowerCase(),
+    (item) => item.courseId.toLowerCase() === id.toLowerCase(),
   );
   const pathname = usePathname();
   // active link style
@@ -23,27 +23,27 @@ export default function CourseHeader({
     }`;
   return (
     <div className="space-y-4">
-      <nav className="flex gap-1 px-4 mb-4 border-b border-gray-800">
+      <nav className="flex gap-1 sticky top-16 z-2 bg-gray-950 px-4 mb-4 border-b border-gray-800">
         <Link
-          href={`/classroom/${CourseCode}`}
-          className={linkStyle(`/classroom/${CourseCode}`)}
+          href={`/classroom/${id}`}
+          className={linkStyle(`/classroom/${id}`)}
         >
           Stream
         </Link>
         <Link
-          href={`/classroom/${CourseCode}/classwork`}
-          className={linkStyle(`/classroom/${CourseCode}/classwork`)}
+          href={`/classroom/${id}/classwork`}
+          className={linkStyle(`/classroom/${id}/classwork`)}
         >
           Classwork
         </Link>
         <Link
-          href={`/classroom/${CourseCode}/file`}
-          className={linkStyle(`/classroom/${CourseCode}/file`)}
+          href={`/classroom/${id}/file`}
+          className={linkStyle(`/classroom/${id}/file`)}
         >
           File Explorer
         </Link>
       </nav>
-      <h1 className="text-5xl text-center mt-5 text-blue-400 font-semibold">
+      <h1 className="text-5xl text-center mt-10 text-blue-400 font-semibold">
         {course?.title} ({course?.courseId})
       </h1>
       <h3 className="text-lg text-center mt-2 text-gray-500">
