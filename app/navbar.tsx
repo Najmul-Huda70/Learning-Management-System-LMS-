@@ -28,19 +28,19 @@ export default function Navbar() {
             className="w-10 h-10 flex flex-col justify-center items-center gap-1"
           >
             <span
-              className={`block h-1 w-8 bg-gray-700 rounded transition-all duration-300 ${
+              className={`block h-1 w-8 bg-gray-300 rounded transition-all duration-300 ${
                 open ? "rotate-45 translate-y-2" : ""
               }`}
             ></span>
 
             <span
-              className={`block h-1 w-8 bg-gray-700 rounded transition-all duration-300 ${
+              className={`block h-1 w-8 bg-gray-300 rounded transition-all duration-300 ${
                 open ? "opacity-0" : ""
               }`}
             ></span>
 
             <span
-              className={`block h-1 w-8 bg-gray-700 rounded transition-all duration-300 ${
+              className={`block h-1 w-8 bg-gray-300 rounded transition-all duration-300 ${
                 open ? "-rotate-45 -translate-y-2" : ""
               }`}
             ></span>
@@ -86,9 +86,9 @@ export default function Navbar() {
               tabIndex={0}
               className="dropdown-content menu  rounded-box top-13 z-50"
             >
-              <div className="max-w-lg w-full bg-white border border-gray-200 rounded-xl overflow-hidden shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.08),0_15px_15px_-6px_rgba(0,0,0,0.06)] transition-all duration-300">
-                <div className="px-4 py-4 border-b border-gray-200 bg-linear-to-r from-blue-700 to-blue-600">
-                  <p className="text-xs font-medium text-blue-200 uppercase tracking-wider">
+              <div className="max-w-lg w-full bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.08),0_15px_15px_-6px_rgba(0,0,0,0.06)] transition-all duration-300">
+                <div className="px-4 py-4 border-b border-gray-500 bg-linear-to-r from-gray-950 to-gray-800">
+                  <p className="text-xs font-medium text-blue-300 uppercase tracking-wider">
                     Signed in as
                   </p>
                   <div className="flex gap-2 items-center mt-1">
@@ -117,8 +117,8 @@ export default function Navbar() {
                 </div>
 
                 <div className="py-1.5">
-                  <a
-                    href="#"
+                  <Link
+                    href="profile"
                     className="group relative flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 transition-all duration-200"
                   >
                     <div className="absolute left-0 top-0 h-full w-1 bg-blue-500 rounded-r opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-y-100 scale-y-80"></div>
@@ -136,7 +136,7 @@ export default function Navbar() {
                         ></path>
                       </svg>
                     </div>
-                    <span className="font-medium text-gray-700 group-hover:text-[#1a365d]">
+                    <span className="font-medium text-gray-300 group-hover:text-[#1a365d]">
                       Profile
                     </span>
                     <svg
@@ -151,10 +151,10 @@ export default function Navbar() {
                         fillRule="evenodd"
                       ></path>
                     </svg>
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    href="setting"
                     className="group relative flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 transition-all duration-200"
                   >
                     <div className="absolute left-0 top-0 h-full w-1 bg-blue-600 rounded-r opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-y-100 scale-y-80"></div>
@@ -172,7 +172,7 @@ export default function Navbar() {
                         ></path>
                       </svg>
                     </div>
-                    <span className="font-medium text-gray-700 group-hover:text-[#1a365d]">
+                    <span className="font-medium text-gray-300 group-hover:text-[#1a365d]">
                       Settings
                     </span>
                     <svg
@@ -187,10 +187,10 @@ export default function Navbar() {
                         fillRule="evenodd"
                       ></path>
                     </svg>
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="group relative flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-red-50 transition-all duration-200"
                   >
                     <div className="absolute left-0 top-0 h-full w-1 bg-red-500 rounded-r opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-y-100 scale-y-80"></div>
@@ -208,7 +208,7 @@ export default function Navbar() {
                         ></path>
                       </svg>
                     </div>
-                    <span className="font-medium text-gray-700 group-hover:text-red-600">
+                    <span className="font-medium text-gray-300 group-hover:text-red-600">
                       Logout
                     </span>
                     <svg
@@ -223,7 +223,7 @@ export default function Navbar() {
                         fillRule="evenodd"
                       ></path>
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </ul>
@@ -255,18 +255,9 @@ export default function Navbar() {
 
         {/* Menu Items */}
         <ul className="flex flex-col gap-4 p-4 text-md">
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/classroom">Classroom</Link>
-          </li>
-          <li>
-            <Link href="/classwork">Classwork</Link>
-          </li>
-          <li>
-            <Link href="/file">File</Link>
-          </li>
+          <Link href={"/"}>Home</Link>
+          <Link href={"/classroom"}>Classroom</Link>
+          <Link href={"/notice"}>Notice</Link>
         </ul>
       </nav>
     </>

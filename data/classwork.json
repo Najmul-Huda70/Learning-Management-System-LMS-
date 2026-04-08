@@ -1,0 +1,33 @@
+[
+  {
+    "id": "1",
+    "title": "database management system",
+    "category": "clp",
+    "description": "সবাই মনোযোগ দিয়ে শোনো, Assignment 2 পোর্টাল ওপেন করা হয়েছে। আগামী সপ্তাহের শুক্রবারের মধ্যে সাবমিট করতে হবে। দেরি হলে মার্কস কাটা যাবে।",
+    "attachments": {
+      "hasImage": true,
+      "imageUrl": "/najmul huda.png",
+      "hasFile": false
+    },
+    "postTime": "10:30 AM",
+    "postData": "04 April, 2026",
+    "deadlineTime": "10:30 AM",
+    "deadlineDate": "05 April, 2026"
+  },
+  {
+    "id": "2",
+    "title": "database management system",
+    "category": "assignment",
+    "description": "সবাই মনোযোগ দিয়ে শোনো, Assignment 2 পোর্টাল ওপেন করা হয়েছে। আগামী সপ্তাহের শুক্রবারের মধ্যে সাবমিট করতে হবে। দেরি হলে মার্কস কাটা যাবে।",
+    "attachments": {
+      "hasFile": true,
+      "fileUrl": "https://drive.google.com/file/d/1Q4I_WGPxECqUanmO-gQY-abzaARTGsau/view?usp=drive_link",
+      "fileName": "Calculus_Limit_Notes.pdf",
+      "fileSize": "2.5 MB"
+    },
+    "postTime": "10:30 AM",
+    "postDate": "04 April, 2026",
+    "deadlineTime": "10:30 AM",
+    "deadlineDate": "05 April, 2026"
+  }
+]

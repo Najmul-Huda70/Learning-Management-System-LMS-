@@ -1,0 +1,31 @@
+[
+  {
+    "id": "1",
+    "title": "database management system",
+    "category": "file",
+    "lecture": "01",
+    "chapter": "02",
+    "attachments": {
+      "hasImage": true,
+      "imageUrl": "/najmul huda.png",
+      "hasFile": false
+    },
+    "postTime": "10:30 AM",
+    "postData": "04 April, 2026"
+  },
+  {
+    "id": "2",
+    "title": "database management system",
+    "category": "file",
+    "lecture": "01",
+    "chapter": "02",
+    "attachments": {
+      "hasFile": true,
+      "fileUrl": "https://drive.google.com/file/d/1Q4I_WGPxECqUanmO-gQY-abzaARTGsau/view?usp=drive_link",
+      "fileName": "Calculus_Limit_Notes.pdf",
+      "fileSize": "2.5 MB"
+    },
+    "postTime": "10:30 AM",
+    "postDate": "04 April, 2026"
+  }
+]

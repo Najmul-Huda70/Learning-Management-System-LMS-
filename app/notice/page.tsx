@@ -59,13 +59,13 @@ export default function Notice() {
   );
   return (
     <div className="m-5 p-4  rounded-lg shadow-sm">
-      <h1 className="text-5xl text-center  text-blue-400 font-semibold">
+      <h1 className="text-3xl sm:text-5xl text-center  text-blue-400 font-semibold">
         Notice Board
       </h1>
-      <p className="text-lg text-center mt-2 text-gray-500">
+      <p className="text-md sm:text-lg text-center mt-2 text-gray-500">
         Manage and access your important notice.
       </p>
-      <div className="flex justify-between items-center my-5 gap-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center my-5 gap-4">
         <div className="w-full flex items-center h-11 text-lg bg-[#0f172a] text-[#d1d5db] rounded-lg shadow-md overflow-hidden px-2">
           <input
             type="text"
@@ -117,7 +117,7 @@ export default function Notice() {
           <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
             Category
           </span>
-          <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800 shadow-lg">
+          <div className="flex flex-wrap bg-[#0f172a] p-1 rounded-md sm:rounded-full border border-gray-800 shadow-lg">
             {[
               "All",
               "urgent",
@@ -167,13 +167,13 @@ export default function Notice() {
           </div>
         </div>
       </div>
-      <div className="mx-auto grid grid-cols-4 justify-center gap-5">
+      <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5">
         {currentNotice.length ? (
           currentNotice.map((notice, index) => {
             return (
               <div
                 key={index}
-                className="group space-y-3 relative w-75 p-4 pb-22 rounded-xl bg-[#0f172a] text-white overflow-hidden 
+                className="group space-y-3 relative p-4 pb-28 sm:pb-22 rounded-xl bg-[#0f172a] text-white overflow-hidden 
       shadow-[inset_0_-16px_24px_rgba(255,255,255,0.15)]"
               >
                 {/* Title */}
@@ -194,7 +194,7 @@ export default function Notice() {
                 </span>
 
                 {/* Posted by */}
-                <div className="absolute bottom-2">
+                <div className="absolute bottom-2 left-0 right-0 p-2">
                   <div className="mt-2 text-md text-gray-300">
                     <span className="font-semibold mb-2 text-white">
                       Posted by:
@@ -205,7 +205,7 @@ export default function Notice() {
                   <div className="w-full h-0.5 bg-gray-700 my-1"></div>
 
                   {/* Footer */}
-                  <div className="flex gap-24  justify-between items-center text-sm">
+                  <div className="flex gap-24  justify-between items-center  text-xs md:text-sm">
                     <span className="text-gray-400">{notice.date}</span>
 
                     {/* Icons */}
@@ -232,7 +232,7 @@ export default function Notice() {
         )}
       </div>
       {currentNotice.length ? (
-        <div className="mt-5 flex justify-between items-center">
+        <div className="mt-5 flex text-xs sm:text-lg justify-between items-center">
           <div className="text-white font-bold">
             Showing {Math.min(startIndex + 1, courseLength)} to{" "}
             {Math.min(startIndex + itemsPerPage, courseLength)} of{" "}
@@ -246,7 +246,7 @@ export default function Notice() {
             >
               <i className="fa-solid fa-angle-left"></i>
             </button>
-            <div className="btn btn-active btn-sm bg-[#0f172a] text-white text-lg font-bold p-2 px-3">
+            <div className="btn btn-active btn-xs sm:btn-sm bg-[#0f172a] text-white tex-sm sm:text-lg font-bold p-2 px-2 sm:px-3">
               {Math.min(currentPage, courseLength)}
             </div>
             <button

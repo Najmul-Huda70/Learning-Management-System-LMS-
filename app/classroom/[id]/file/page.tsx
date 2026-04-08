@@ -1,7 +1,15 @@
 "use client";
 import React, { useState } from "react";
-// import courses from "../../data/courses.json";
-// import Link from "next/link";
+import fileData from "../../../../data/file.json";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  MoreVertical,
+  Clock,
+  Calendar,
+  FileText,
+  Download,
+} from "lucide-react";
 export default function File() {
   // const [currentPage, setCurrentPage] = useState(1);
   const [open, setOpen] = useState(false);
@@ -49,18 +57,18 @@ export default function File() {
   // const courseLength: number = filteredCourse.length;
   // const totalPages: number = Math.ceil(courseLength / itemsPerPage);
   // const startIndex = (currentPage - 1) * itemsPerPage;
-  // const currentCourse = filteredCourse.slice(
+  // const fileData = filteredCourse.slice(
   //   startIndex,
   //   startIndex + itemsPerPage,
   // );
   return (
     <div className="m-5 p-4  rounded-lg shadow-sm">
-      <h1 className="text-5xl text-center  text-blue-400 font-semibold">
+      {/* <h1 className="text-5xl text-center  text-blue-400 font-semibold">
         File Explorer
       </h1>
       <p className="text-lg text-center mt-2 text-gray-500">
         Manage and access your enrolled classrooms
-      </p>
+      </p> */}
       <div className="flex justify-between items-center my-5 gap-4">
         <div className="w-full flex items-center h-11 text-lg bg-[#0f172a] text-[#d1d5db] rounded-lg shadow-md overflow-hidden px-2">
           <input
@@ -177,75 +185,78 @@ export default function File() {
           </div>
         </div>
       </div>
-      {/* <div className="mx-auto grid grid-cols-4 justify-center gap-5">
-        {currentCourse.length ? (
-          currentCourse.map((course, index) => {
+      <div className="mx-auto grid grid-cols-2 justify-center gap-5">
+        {fileData.length ? (
+          fileData.map((file, index) => {
             return (
               <div
                 key={index}
-                className="group relative w-75 p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
+                className="group relative w-full p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
       shadow-[inset_0_-16px_24px_rgba(255,255,255,0.15)]"
               >
-                
-                <Link href={`/classroom/${course.courseId.toLowerCase()}`}>
-                  <h2 className="text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
-                    {course.courseId} : {course.title}
-                  </h2>
-                </Link>
+                <h2 className="text-lg font-bold mb-5 text-center text-cyan-400 hover:underline cursor-pointer">
+                  {file.title}
+                </h2>
+                {/* Post Image */}
+                {/* {file.attachments?.hasImage && file.attachments?.imageUrl && (
+                  <div className="mb-4 overflow-hidden rounded-xl border border-gray-800">
+                    <Image
+                      src={file.attachments.imageUrl}
+                      width={1200}
+                      height={800}
+                      alt="Post Content"
+                      className="w-full h-auto object-contain max-h-100"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  </div>
+                )} */}
 
-               
-                <div className="mt-3 flex flex-wrap gap-2 text-md font-medium text-gray-300">
-                  <span>
-                    <span className="text-green-400 ">Type:</span> {course.type}
-                  </span>
-                  <span>
-                    <span className="text-yellow-400">Credits:</span>{" "}
-                    {course.credits}
-                  </span>
-                  <span>
-                    <span className="text-emerald-400">Prerequisites:</span>{" "}
-                    {course.prerequisites || "N/A"}
-                  </span>
-                </div>
-
-                
-                <div className="mt-2 text-md  text-gray-300">
-                  <span className="font-semibold text-white">
-                    Course Teacher:
-                  </span>{" "}
-                  {course.teacher}
-                </div>
-
-                <div className="absolute bottom-2">
-                 
-                  <div className="w-full h-0.5 bg-gray-700 my-1"></div>
-
-                  
-                  <div className="flex gap-10  justify-between items-center text-sm">
-                    <span className="text-gray-400">
-                      {course.year} {course.semester}
-                    </span>
-
-                 
-                    <div className="flex gap-0.5">
-                      <Link
-                        href={`classroom/${course.courseId.toLowerCase()}/classwork`}
-                      >
-                        <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                          <i className="fa-solid fa-user"></i>
-                        </div>
-                      </Link>
-                      <Link
-                        href={`classroom/${course.courseId.toLowerCase()}/file`}
-                      >
-                        <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                          <i className="fa-regular fa-folder"></i>
-                        </div>
-                      </Link>
-                      <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                {/* Post Document */}
+                {file.attachments && file.attachments.hasFile && (
+                  <div className="bg-gray-900/40 border border-gray-800 rounded-xl p-4 flex items-center justify-between group hover:bg-gray-800/60 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <div className="bg-red-500/10 p-3 rounded-lg text-red-500">
+                        <FileText size={24} />
+                      </div>
+                      <div className="max-w-37.5 md:max-w-xs">
+                        <p className="text-sm font-semibold text-gray-200 truncate">
+                          {file.attachments.fileName?.split("/").pop()}
+                        </p>
+                        <p className="text-[10px] text-gray-500 font-bold uppercase mt-0.5">
+                          PDF • {file.attachments.fileSize}
+                        </p>
                       </div>
                     </div>
+                    <a
+                      href={file.attachments.fileUrl}
+                      className="bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg transition-all"
+                    >
+                      <Download size={18} />
+                    </a>
+                  </div>
+                )}
+                <div className="absolute w-[95%] mx-auto bottom-2">
+                  <div className="w-full h-0.5 bg-gray-700 my-1"></div>
+
+                  <div className="flex gap-10  justify-between items-center text-sm">
+                    <span>
+                      <span className="text-green-400 ">Lecture:</span>{" "}
+                      {file.lecture}
+                    </span>
+                    {/* <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
+                      <i className="fa-solid fa-user"></i>
+                    </div> */}
+                    {/* <Link
+                      href={`classroom/${file.courseId.toLowerCase()}/classfile`}
+                    >
+                      
+                    </Link> */}
+                    <span>
+                      <span className="text-yellow-400">Chapter:</span>{" "}
+                      {file.chapter}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -256,8 +267,8 @@ export default function File() {
             No Course Available
           </div>
         )}
-      </div> */}
-      {/* {currentCourse.length ? (
+      </div>
+      {/* {fileData.length ? (
         <div className="mt-5 flex justify-between items-center">
           <div className="text-white font-bold">
             Showing {Math.min(startIndex + 1, courseLength)} to{" "}

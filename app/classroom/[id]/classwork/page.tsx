@@ -1,7 +1,16 @@
 "use client";
 import React, { useMemo, useState } from "react";
-// import courses from "../../data/courses.json";
+import classworkData from "../../../../data/classwork.json";
 import Link from "next/link";
+import Image from "next/image";
+import {
+  MoreVertical,
+  Clock,
+  Calendar,
+  FileText,
+  Download,
+} from "lucide-react";
+
 export default function Classwork() {
   const [currentPage, setCurrentPage] = useState(1);
   const [open, setOpen] = useState(false);
@@ -28,10 +37,10 @@ export default function Classwork() {
 
   // const search = Value.toLowerCase();
   // const filteredCourse = useMemo(() => {
-  //   return courses.filter((c) => {
+  //   return works.filter((c) => {
   //     const matchesSearch =
   //       !search ||
-  //       [c.courseId, c.title, c.type, c.teacher, c.semester, c.year, c.credits]
+  //       [c.id, c.title, c.type, c.teacher, c.semester, c.year, c.credits]
   //         .join(" ")
   //         .toLowerCase()
   //         .includes(search);
@@ -46,21 +55,21 @@ export default function Classwork() {
   // console.log(Value);
 
   // const itemsPerPage: number = 12;
-  // const courseLength: number = filteredCourse.length;
-  // const totalPages: number = Math.ceil(courseLength / itemsPerPage);
+  // const workLength: number = filteredCourse.length;
+  // const totalPages: number = Math.ceil(workLength / itemsPerPage);
   // const startIndex = (currentPage - 1) * itemsPerPage;
   // const currentCourse = filteredCourse.slice(
   //   startIndex,
   //   startIndex + itemsPerPage,
   // );
   return (
-    <div className="m-5 p-4  rounded-lg shadow-sm">
-      <h1 className="text-5xl text-center  text-blue-400 font-semibold">
+    <div className="m-5 p-4 rounded-lg shadow-sm">
+      {/* <h1 className="text-5xl text-center  text-blue-400 font-semibold">
         My Classwork
       </h1>
       <p className="text-lg text-center mt-2 text-gray-500">
         Manage and access your Classwork
-      </p>
+      </p> */}
       <div className="flex justify-between items-center my-5 gap-4">
         <div className="w-full flex items-center h-11 text-lg bg-[#0f172a] text-[#d1d5db] rounded-lg shadow-md overflow-hidden px-2">
           <input
@@ -70,7 +79,7 @@ export default function Classwork() {
             autoComplete="off"
             onChange={(e) => setValue(e.target.value)}
             id="input"
-            placeholder="Search course id , title..."
+            placeholder="Search work id , title..."
             className="w-full h-full outline-none text-lg px-2  caret-blue-500"
           />
           <label htmlFor="input" className="px-2 cursor-text">
@@ -101,151 +110,104 @@ export default function Classwork() {
       active:shadow-[inset_0.4px_1px_8px_rgba(128,128,128,1),0_0_8px_rgba(96,165,250,0.6)] active:[text-shadow:0_0_20px_rgba(255,255,255,1)]
       "
           >
-            Filter
+            Pending
+          </button>
+        </div>
+        <div className="w-30">
+          <button
+            onClick={handleFilterBtn}
+            className="
+      px-6 py-1 rounded-lg min-h-[2.4em] min-w-[3em]
+      flex items-center gap-2
+      text-[18px] font-bold tracking-wide leading-none text-white/90
+      bg-[linear-gradient(140deg,#0f172a_0%,#1e293b_50%,rgba(15,23,42,0.7)_100%)]
+      shadow-[inset_0.4px_1px_4px_rgba(128,128,128,0.8)]
+      transition-all duration-100 ease-[cubic-bezier(0.22,0.61,0.36,1)] hover:scale-110
+      hover:shadow-[inset_0.4px_1px_4px_rgba(128,128,128,1),2px_4px_8px_rgba(0,0,0,0.3)] hover:text-white
+      hover:[text-shadow:0_0_10px_rgba(255,255,255,0.4)]
+      active:scale-100  active:tracking-widest   active:text-white
+      active:shadow-[inset_0.4px_1px_8px_rgba(128,128,128,1),0_0_8px_rgba(96,165,250,0.6)] active:[text-shadow:0_0_20px_rgba(255,255,255,1)]
+      "
+          >
+            Complete
           </button>
         </div>
       </div>
-      <div
-        className={`${open ? "flex" : "hidden"} flex-col gap-6 my-8 items-center transition-all duration-300`}
-      >
-        {/* Year Filter Pills */}
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-            Year
-          </span>
-          <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800 shadow-lg">
-            {["All", "1st", "2nd", "3rd", "4th"].map((year) => (
-              <button
-                key={year}
-                onClick={() => HandleFilterChange("year", year)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 
-            ${
-              year === filters.year
-                ? "bg-[#0A66C2] text-white shadow-[0_0_15px_rgba(10,102,194,0.4)]"
-                : "text-gray-400 hover:text-white hover:bg-gray-800"
-            }`}
-              >
-                {year === "All" ? "All Years" : `${year} Year`}
-              </button>
-            ))}
-          </div>
-        </div>
 
-        <div className="flex gap-12">
-          {/* Semester Pills */}
-          <div className="flex flex-col items-center gap-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-              Semester
-            </span>
-            <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800">
-              {["All", "1st", "2nd"].map((sem) => (
-                <button
-                  key={sem}
-                  onClick={() => HandleFilterChange("semester", sem)}
-                  className={`px-5 py-2 rounded-full text-sm font-medium text-gray-400 hover:text-white transition-all ${
-                    sem === filters.semester
-                      ? "bg-[#0A66C2] text-white shadow-[0_0_15px_rgba(10,102,194,0.4)]"
-                      : "text-gray-400 hover:text-white hover:bg-gray-800"
-                  }`}
-                >
-                  {sem === "All" ? "All" : `${sem} Sem`}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Course Type Pills */}
-          <div className="flex flex-col items-center gap-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-              Type
-            </span>
-            <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800">
-              {["All", "Theory", "Lab"].map((type) => (
-                <button
-                  key={type}
-                  onClick={() => HandleFilterChange("type", type)}
-                  className={`px-5 py-2 rounded-full text-sm font-medium text-gray-400 hover:text-white transition-all ${
-                    type === filters.type
-                      ? "bg-[#0A66C2] text-white shadow-[0_0_15px_rgba(10,102,194,0.4)]"
-                      : "text-gray-400 hover:text-white hover:bg-gray-800"
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <div className="mx-auto grid grid-cols-4 justify-center gap-5">
-        {currentCourse.length ? (
-          currentCourse.map((course, index) => {
+      <div className="mx-auto grid grid-cols-2 justify-center gap-5">
+        {classworkData.length ? (
+          classworkData.map((work, index) => {
             return (
               <div
                 key={index}
-                className="group relative w-75 p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
+                className="group relative w-full p-4 pb-18 rounded-xl bg-[#0f172a] text-white overflow-hidden 
       shadow-[inset_0_-16px_24px_rgba(255,255,255,0.15)]"
               >
-                
-                <Link href={`/classroom/${course.courseId.toLowerCase()}`}>
-                  <h2 className="text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
-                    {course.courseId} : {course.title}
-                  </h2>
-                </Link>
+                <h2 className="text-lg font-bold text-center text-cyan-400 ">
+                  {work.title}
+                </h2>
+                <div className="mt-3 flex flex-col flex-wrap gap-2 text-md font-medium text-gray-300">
+                  <span>
+                    <span className="text-yellow-400">Category:</span>{" "}
+                    {work.category}
+                  </span>
+                  <span>{work.description || "N/A"}</span>
+                  {/* Post Image */}
+                  {/* {work.attachments?.hasImage && work.attachments?.imageUrl && (
+                    <div className="mb-4 overflow-hidden rounded-xl border border-gray-800">
+                      <Image
+                        src={work.attachments.imageUrl}
+                        width={1200}
+                        height={800}
+                        alt="Post Content"
+                        className="w-full h-auto object-contain max-h-100"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    </div>
+                  )} */}
 
-                
-                <div className="mt-3 flex flex-wrap gap-2 text-md font-medium text-gray-300">
-                  <span>
-                    <span className="text-green-400 ">Type:</span> {course.type}
-                  </span>
-                  <span>
-                    <span className="text-yellow-400">Credits:</span>{" "}
-                    {course.credits}
-                  </span>
-                  <span>
-                    <span className="text-emerald-400">Prerequisites:</span>{" "}
-                    {course.prerequisites || "N/A"}
-                  </span>
+                  {/* Post Document */}
+                  {work.attachments && work.attachments.hasFile && (
+                    <div className="bg-gray-900/40 border border-gray-800 rounded-xl p-4 flex items-center justify-between group hover:bg-gray-800/60 transition-colors">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-red-500/10 p-3 rounded-lg text-red-500">
+                          <FileText size={24} />
+                        </div>
+                        <div className="max-w-37.5 md:max-w-xs">
+                          <p className="text-sm font-semibold text-gray-200 truncate">
+                            {work.attachments.fileName?.split("/").pop()}
+                          </p>
+                          <p className="text-[10px] text-gray-500 font-bold uppercase mt-0.5">
+                            PDF • {work.attachments.fileSize}
+                          </p>
+                        </div>
+                      </div>
+                      <a
+                        href={work.attachments.fileUrl}
+                        className="bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg transition-all"
+                      >
+                        <Download size={18} />
+                      </a>
+                    </div>
+                  )}
                 </div>
 
-                
-                <div className="mt-2 text-md  text-gray-300">
-                  <span className="font-semibold text-white">
-                    Course Teacher:
-                  </span>{" "}
-                  {course.teacher}
-                </div>
-
-                <div className="absolute bottom-2">
-                  
-                  <div className="w-full h-0.5 bg-gray-700 my-1"></div>
-
-                  
+                <div className="absolute w-[95%] bottom-2">
+                  <div className="w-full h-0.5 bg-gray-700 my-2"></div>
                   <div className="flex gap-10  justify-between items-center text-sm">
                     <span className="text-gray-400">
-                      {course.year} {course.semester}
+                      {work.deadlineTime} , {work.deadlineDate}
                     </span>
-
-                   
-                    <div className="flex gap-0.5">
-                      <Link
-                        href={`classroom/${course.courseId.toLowerCase()}/classwork`}
-                      >
-                        <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                          <i className="fa-solid fa-user"></i>
-                        </div>
-                      </Link>
-                      <Link
-                        href={`classroom/${course.courseId.toLowerCase()}/file`}
-                      >
-                        <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                          <i className="fa-regular fa-folder"></i>
-                        </div>
-                      </Link>
+                    <Link href={`classroom/${work.id.toLowerCase()}/classwork`}>
                       <div className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-700 cursor-pointer transition">
-                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                        <i className="fa-solid fa-user"></i>
                       </div>
-                    </div>
+                    </Link>
+                    <span className="text-gray-400">
+                      {work.deadlineTime} , {work.deadlineDate}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -256,37 +218,7 @@ export default function Classwork() {
             No Course Available
           </div>
         )}
-      </div> */}
-      {/* {currentCourse.length ? (
-        <div className="mt-5 flex justify-between items-center">
-          <div className="text-white font-bold">
-            Showing {Math.min(startIndex + 1, courseLength)} to{" "}
-            {Math.min(startIndex + itemsPerPage, courseLength)} of{" "}
-            {courseLength} results
-          </div>
-          <div className="flex items-center gap-2 text-gray-800">
-            <button
-              className="hover:bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center"
-              onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage <= 1}
-            >
-              <i className="fa-solid fa-angle-left"></i>
-            </button>
-            <div className="btn btn-active btn-sm bg-[#0f172a] text-white text-lg font-bold p-2 px-3">
-              {Math.min(currentPage, courseLength)}
-            </div>
-            <button
-              className="hover:bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center"
-              onClick={() => setCurrentPage(currentPage + 1)}
-              disabled={currentPage >= totalPages}
-            >
-              <i className="fa-solid fa-angle-right"></i>
-            </button>
-          </div>
-        </div>
-      ) : (
-        ""
-      )} */}
+      </div>
     </div>
   );
 }

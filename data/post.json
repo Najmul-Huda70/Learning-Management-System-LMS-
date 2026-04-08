@@ -7,7 +7,8 @@
     "timestamp": "2026-04-04T10:30:00",
     "postTime": "10:30 AM",
     "postData": "04 April, 2026",
-    "category": "Note",
+    "category": "file",
+    "lecture": "01",
     "description": "আজকের ক্যালকুলাস ১ ক্লাসের হ্যান্ড-রিটেন নোটটি এখানে শেয়ার করলাম। লিমিট (Limit) সেকশনটা সবাই ভালো করে দেখে নিও।",
     "attachments": {
       "hasImage": true,
@@ -30,7 +31,7 @@
     "timestamp": "2026-04-03T14:15:00",
     "postTime": "02:15 PM",
     "postData": "03 April, 2026",
-    "category": "Assignment",
+    "category": "Classwork",
     "description": "সবাই মনোযোগ দিয়ে শোনো, Assignment 2 পোর্টাল ওপেন করা হয়েছে। আগামী সপ্তাহের শুক্রবারের মধ্যে সাবমিট করতে হবে। দেরি হলে মার্কস কাটা যাবে।",
     "attachments": {
       "hasImage": false,

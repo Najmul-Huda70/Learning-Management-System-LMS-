@@ -55,13 +55,13 @@ export default function Classroom() {
   );
   return (
     <div className="m-5 p-4  rounded-lg shadow-sm">
-      <h1 className="text-5xl text-center  text-blue-400 font-semibold">
+      <h1 className="text-3xl sm:text-5xl text-center  text-blue-400 font-semibold">
         My Classroom
       </h1>
-      <p className="text-lg text-center mt-2 text-gray-500">
+      <p className="text-md sm:text-lg text-center mt-2 text-gray-500">
         Manage and access your enrolled classrooms
       </p>
-      <div className="flex justify-between items-center my-5 gap-4">
+      <div className="flex flex-col  sm:flex-row sm:justify-between sm:items-center my-5 gap-4">
         <div className="w-full flex items-center h-11 text-lg bg-[#0f172a] text-[#d1d5db] rounded-lg shadow-md overflow-hidden px-2">
           <input
             type="text"
@@ -109,11 +109,11 @@ export default function Classroom() {
         className={`${open ? "flex" : "hidden"} flex-col gap-6 my-8 items-center transition-all duration-300`}
       >
         {/* Year Filter Pills */}
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex  flex-col items-center gap-3">
           <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
             Year
           </span>
-          <div className="flex bg-[#0f172a] p-1 rounded-full border border-gray-800 shadow-lg">
+          <div className="flex flex-wrap bg-[#0f172a] p-1 rounded-md sm:rounded-full border border-gray-800 shadow-lg">
             {["All", "1st", "2nd", "3rd", "4th"].map((year) => (
               <button
                 key={year}
@@ -131,7 +131,7 @@ export default function Classroom() {
           </div>
         </div>
 
-        <div className="flex gap-12">
+        <div className="flex flex-wrap justify-center items-center gap-12">
           {/* Semester Pills */}
           <div className="flex flex-col items-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
@@ -177,24 +177,24 @@ export default function Classroom() {
           </div>
         </div>
       </div>
-      <div className="mx-auto grid grid-cols-4 justify-center gap-5">
+      <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5">
         {currentCourse.length ? (
           currentCourse.map((course, index) => {
             return (
               <div
                 key={index}
-                className="group relative w-75 p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
+                className="group relative  p-4 pb-15 rounded-xl bg-[#0f172a] text-white overflow-hidden 
       shadow-[inset_0_-16px_24px_rgba(255,255,255,0.15)]"
               >
                 {/* Title */}
                 <Link href={`/classroom/${course.courseId.toLowerCase()}`}>
-                  <h2 className="text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
+                  <h2 className="text-md sm:text-lg font-bold text-center text-cyan-400 hover:underline cursor-pointer">
                     {course.courseId} : {course.title}
                   </h2>
                 </Link>
 
                 {/* Info */}
-                <div className="mt-3 flex flex-wrap gap-2 text-md font-medium text-gray-300">
+                <div className="mt-3 flex flex-wrap gap-2 text-sm sm:text-md font-medium text-gray-300">
                   <span>
                     <span className="text-green-400 ">Type:</span> {course.type}
                   </span>
@@ -209,19 +209,19 @@ export default function Classroom() {
                 </div>
 
                 {/* Teacher */}
-                <div className="mt-2 text-md  text-gray-300">
+                <div className="my-2 text-md  text-gray-300">
                   <span className="font-semibold text-white">
                     Course Teacher:
                   </span>{" "}
                   {course.teacher}
                 </div>
 
-                <div className="absolute bottom-2">
+                <div className="absolute bottom-2 left-0 right-0 p-2">
                   {/* Divider */}
                   <div className="w-full h-0.5 bg-gray-700 my-1"></div>
 
                   {/* Footer */}
-                  <div className="flex gap-10  justify-between items-center text-sm">
+                  <div className="flex gap-10  justify-between items-center text-xs sm:text-sm">
                     <span className="text-gray-400">
                       {course.year} {course.semester}
                     </span>
@@ -258,7 +258,7 @@ export default function Classroom() {
         )}
       </div>
       {currentCourse.length ? (
-        <div className="mt-5 flex justify-between items-center">
+        <div className="mt-5 flex text-xs sm:text-lg justify-between items-center">
           <div className="text-white font-bold">
             Showing {Math.min(startIndex + 1, courseLength)} to{" "}
             {Math.min(startIndex + itemsPerPage, courseLength)} of{" "}
@@ -272,7 +272,7 @@ export default function Classroom() {
             >
               <i className="fa-solid fa-angle-left"></i>
             </button>
-            <div className="btn btn-active btn-sm bg-[#0f172a] text-white text-lg font-bold p-2 px-3">
+            <div className="btn btn-active btn-xs sm:btn-sm bg-[#0f172a] text-white tex-sm sm:text-lg font-bold p-2 px-2 sm:px-3">
               {Math.min(currentPage, courseLength)}
             </div>
             <button
